@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import PokemonCard from './componennts/PokemonCard';
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -6,7 +6,9 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
-        <PokemonCard />
+        <ScrollView>
+          <PokemonCard />
+        </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>
   );
@@ -15,6 +17,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: '#e1dadaff',
   },
 });
