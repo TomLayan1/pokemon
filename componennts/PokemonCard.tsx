@@ -6,11 +6,6 @@ import { pokemonData } from '../data';
 const PokemonCard:React.FC = () => {
   const data: pokemonDataType[] = pokemonData;
   const windowWidth = useWindowDimensions().width;
-  const windowHeight = useWindowDimensions().height;
-  console.log({
-    windowWidth,
-    windowHeight
-  })
 
   return (
     <>
@@ -18,19 +13,24 @@ const PokemonCard:React.FC = () => {
         <View key={i} style={[styles.cardContainer, {
           margin: windowWidth > 480 ? 15 : 10,
         }]}>
-          <View>
+          <View style={styles.nameContainer}>
             <Text style={[styles.name, {
               fontSize: windowWidth > 480 ? 30 : 21
             }]}>{item.name}</Text>
             <Text style={[styles.hp, {
               fontSize: windowWidth > 480 ? 25 : 18
-            }]}>{item.hp}</Text>
+            }]}>❤️{item.hp}</Text>
+          </View>
+          <Image 
+            style={styles.image}
+            source={item.image}
+            accessibilityLabel={`${item.name} pokemon`} 
+            resizeMode='contain'
+          />
+          <View>
             <Text style={[styles.hp, {
               fontSize: windowWidth > 480 ? 25 : 18
             }]}>{item.type}</Text>
-          </View>
-          {/* <Image style={styles.image} source={item.image} accessibilityLabel={`${item.name} pokemon`} /> */}
-          <View>
             <Text style={{fontSize: windowWidth > 480 ? 18 : 16}}>
               <Text style={styles.moves}>Moves: </Text>
               {item.moves.join(", ")}
@@ -66,17 +66,21 @@ const styles = StyleSheet.create({
       }
     })
   },
+  nameContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 8,
+  },
   name: {
     fontWeight: "bold",
-    marginBottom: 8,
   },
   hp: {
     fontWeight: "bold",
-    marginBottom: 8,
   },
   image: {
-    width: "90%",
-    height: "100%"
+    width: "100%",
+    height: 200,
+    marginBottom: 8,
   },
   moves: {
     fontWeight: "bold",
